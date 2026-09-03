@@ -23,20 +23,22 @@ jobs:
       - name: Dump autoloader
         run: composer dump-autoload
 
-      - name: Create .env file
+      - name: Create .env file and Private Key
         run: |
-          echo "OCI_USER_OCID=${{ secrets.OCI_USER_OCID }}" >> .env
-          echo "OCI_USER_ID=${{ secrets.OCI_USER_OCID }}" >> .env
-          echo "USER_OCID=${{ secrets.OCI_USER_OCID }}" >> .env
-          echo "USER_ID=${{ secrets.OCI_USER_OCID }}" >> .env
-          echo "OCI_TENANCY_OCID=${{ secrets.OCI_TENANCY_OCID }}" >> .env
-          echo "TENANCY_OCID=${{ secrets.OCI_TENANCY_OCID }}" >> .env
-          echo "OCI_FINGERPRINT=${{ secrets.OCI_FINGERPRINT }}" >> .env
-          echo "FINGERPRINT=${{ secrets.OCI_FINGERPRINT }}" >> .env
+          echo "${{ secrets.OCI_PRIVATE_KEY }}" > private.pem
+          chmod 600 private.pem
+
           echo "OCI_REGION=${{ secrets.OCI_REGION }}" >> .env
-          echo "REGION=${{ secrets.OCI_REGION }}" >> .env
-          echo "OCI_PRIVATE_KEY=\"${{ secrets.OCI_PRIVATE_KEY }}\"" >> .env
-          echo "PRIVATE_KEY=\"${{ secrets.OCI_PRIVATE_KEY }}\"" >> .env
+          echo "OCI_USER_ID=${{ secrets.OCI_USER_OCID }}" >> .env
+          echo "OCI_TENANCY_ID=${{ secrets.OCI_TENANCY_OCID }}" >> .env
+          echo "OCI_KEY_FINGERPRINT=${{ secrets.OCI_FINGERPRINT }}" >> .env
+          echo "OCI_PRIVATE_KEY_FILENAME=private.pem" >> .env
+          echo "OCI_SHAPE=${{ secrets.OCI_SHAPE }}" >> .env
+          echo "OCI_IMAGE_ID=${{ secrets.OCI_IMAGE_ID }}" >> .env
+          echo "OCI_SUBNET_ID=${{ secrets.OCI_SUBNET_ID }}" >> .env
+          echo "OCI_OCPUS=${{ secrets.OCI_OCPUS }}" >> .env
+          echo "OCI_MEMORY_IN_GBS=${{ secrets.OCI_MEMORY_IN_GBS }}" >> .env
+          echo "OCI_SSH_PUBLIC_KEY=\"${{ secrets.OCI_SSH_PUBLIC_KEY }}\"" >> .env
 
       - name: Run OCI Capacity Script
         env:
