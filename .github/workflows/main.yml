@@ -27,9 +27,31 @@ jobs:
         run: |
           echo "OCI_USER_OCID=${{ secrets.OCI_USER_OCID }}" >> .env
           echo "OCI_USER_ID=${{ secrets.OCI_USER_OCID }}" >> .env
+          echo "OCI_USER=${{ secrets.OCI_USER_OCID }}" >> .env
+          echo "USER_OCID=${{ secrets.OCI_USER_OCID }}" >> .env
           echo "OCI_TENANCY_OCID=${{ secrets.OCI_TENANCY_OCID }}" >> .env
+          echo "OCI_TENANCY_ID=${{ secrets.OCI_TENANCY_OCID }}" >> .env
+          echo "TENANCY_OCID=${{ secrets.OCI_TENANCY_OCID }}" >> .env
           echo "OCI_FINGERPRINT=${{ secrets.OCI_FINGERPRINT }}" >> .env
+          echo "FINGERPRINT=${{ secrets.OCI_FINGERPRINT }}" >> .env
           echo "OCI_REGION=${{ secrets.OCI_REGION }}" >> .env
+          echo "REGION=${{ secrets.OCI_REGION }}" >> .env
           echo "OCI_PRIVATE_KEY=\"${{ secrets.OCI_PRIVATE_KEY }}\"" >> .env
+          echo "PRIVATE_KEY=\"${{ secrets.OCI_PRIVATE_KEY }}\"" >> .env
+
       - name: Run OCI Capacity Script
+        env:
+          OCI_USER_OCID: ${{ secrets.OCI_USER_OCID }}
+          OCI_USER_ID: ${{ secrets.OCI_USER_OCID }}
+          OCI_USER: ${{ secrets.OCI_USER_OCID }}
+          USER_OCID: ${{ secrets.OCI_USER_OCID }}
+          OCI_TENANCY_OCID: ${{ secrets.OCI_TENANCY_OCID }}
+          OCI_TENANCY_ID: ${{ secrets.OCI_TENANCY_OCID }}
+          TENANCY_OCID: ${{ secrets.OCI_TENANCY_OCID }}
+          OCI_FINGERPRINT: ${{ secrets.OCI_FINGERPRINT }}
+          FINGERPRINT: ${{ secrets.OCI_FINGERPRINT }}
+          OCI_REGION: ${{ secrets.OCI_REGION }}
+          REGION: ${{ secrets.OCI_REGION }}
+          OCI_PRIVATE_KEY: ${{ secrets.OCI_PRIVATE_KEY }}
+          PRIVATE_KEY: ${{ secrets.OCI_PRIVATE_KEY }}
         run: php index.php
