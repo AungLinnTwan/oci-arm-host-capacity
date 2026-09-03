@@ -20,6 +20,9 @@ jobs:
       - name: Install dependencies
         run: composer install
 
+      - name: Dump autoloader
+        run: composer dump-autoload
+
       - name: Run OCI Capacity Script
         env:
           OCI_USER_OCID: ${{ secrets.OCI_USER_OCID }}
