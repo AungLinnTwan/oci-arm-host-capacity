@@ -21,7 +21,10 @@
   "autoload": {
     "psr-4": {
       "Hitrov\\": ""
-    }
+    },
+    "classmap": [
+      "Exception/ApiCallException.php"
+    ]
   },
   "license": "MIT"
 }
