@@ -52,7 +52,7 @@ if (getenv('CACHE_AVAILABILITY_DOMAINS')) {
 if (getenv('TOO_MANY_REQUESTS_TIME_WAIT')) {
     $api->setWaiter(new TooManyRequestsWaiter((int) getenv('TOO_MANY_REQUESTS_TIME_WAIT')));
 }
-$notifier = new class implements \Hitrov\Interfaces\NotifierInterface {
+$notifier = new class {
     public function isSupported(): bool {
         return false;
     }
